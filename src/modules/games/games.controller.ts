@@ -1,7 +1,7 @@
 import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { GamesService } from '@modules/games/games.service';
 
-@Controller()
+@Controller('games')
 export class GamesController {
   constructor(private readonly gamesService: GamesService) {}
 
