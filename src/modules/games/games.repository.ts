@@ -1,4 +1,4 @@
-import { NotFoundException, HttpStatus, Injectable } from '@nestjs/common';
+import { NotFoundException, Injectable } from '@nestjs/common';
 import { PrismaService } from '@/data';
 import { QueryDto } from './dtos/QueryDto';
 
@@ -25,12 +25,31 @@ export class GamesRepository {
   async getFilteredGames(query: QueryDto) {
     const games = await this.prismaService.game.findMany({
       where: {
-        genre: {
-          equals: query.genre,
-          mode: 'insensitive',
-        },
+        ...(query.genre
+          ? { genre: { equals: query.genre, mode: 'insensitive' } }
+          : {}),
+        ...(query.publisher
+          ? { publisher: { equals: query.publisher, mode: 'insensitive' } }
+          : {}),
+        ...(query.platform
+          ? {
+              platform: {
+                equals:
+                  query.platform.toLowerCase() === 'pc'
+                    ? 'pc (windows)'
+                    : query.platform,
+                mode: 'insensitive',
+              },
+            }
+          : {}),
+        ...(query.year
+          ? { release_date: { contains: query.year.slice(0, 4) } }
+          : {}),
       },
     });
+    if (!games) {
+      throw new NotFoundException('Games not found');
+    }
     return games;
   }
 }
