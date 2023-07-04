@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './modules';
+import { AppModule } from '@/modules';
 import { VersioningType } from '@nestjs/common';
 
 async function bootstrap() {
