@@ -22,6 +22,21 @@ export class GamesRepository {
     return game;
   }
 
+  async getGameByTitle(title: string) {
+    const game = await this.prismaService.game.findFirstOrThrow({
+      where: {
+        title: {
+          equals: title,
+          mode: 'insensitive',
+        },
+      },
+    });
+    if (!game) {
+      throw new NotFoundException('Game not found!');
+    }
+    return game;
+  }
+
   async getFilteredGames(query: QueryDto) {
     const games = await this.prismaService.game.findMany({
       where: {

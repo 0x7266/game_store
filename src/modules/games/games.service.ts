@@ -14,6 +14,10 @@ export class GamesService {
     return this.gameRepository.getGameById(id);
   }
 
+  getGameByTitle(title: string) {
+    return this.gameRepository.getGameByTitle(title);
+  }
+
   getFilteredGames(query: QueryDto) {
     return this.gameRepository.getFilteredGames(query);
   }

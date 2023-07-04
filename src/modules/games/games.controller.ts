@@ -14,8 +14,13 @@ export class GamesController {
     return this.gamesService.getFilteredGames(query);
   }
 
-  @Get(':id')
-  getGameById(@Param('id', ParseIntPipe) id: number) {
-    return this.gamesService.getGameById(id);
+  // @Get(':id')
+  // getGameById(@Param('id', ParseIntPipe) id: number) {
+  //   return this.gamesService.getGameById(id);
+  // }
+
+  @Get(':title')
+  async getGameByTitle(@Param('title') title: string) {
+    return this.gamesService.getGameByTitle(title);
   }
 }
