@@ -7,6 +7,6 @@ export class GamesController {
 
   @Get()
   getGames() {
-    return 'games';
+    return this.gamesService.getGames();
   }
 }
