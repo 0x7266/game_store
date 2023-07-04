@@ -1,13 +1,17 @@
-import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe, Query } from '@nestjs/common';
 import { GamesService } from '@modules/games/games.service';
+import { QueryDto } from './dtos/QueryDto';
 
 @Controller('games')
 export class GamesController {
   constructor(private readonly gamesService: GamesService) {}
 
   @Get()
-  getGames() {
-    return this.gamesService.getGames();
+  getGames(@Query() query?: QueryDto) {
+    if (!query) {
+      return this.gamesService.getGames();
+    }
+    return this.gamesService.getFilteredGames(query);
   }
 
   @Get(':id')

@@ -1,23 +1,20 @@
-import { PrismaService } from '@/data/prisma.service';
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { GamesRepository } from './games.repository';
+import { QueryDto } from './dtos/QueryDto';
 
 @Injectable()
 export class GamesService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(private readonly gameRepository: GamesRepository) {}
 
   getGames() {
-    return this.prismaService.game.findMany() || [];
+    return this.gameRepository.getGames();
   }
 
-  async getGameById(id: number) {
-    const game = await this.prismaService.game.findUnique({
-      where: {
-        id,
-      },
-    });
-    if (!game) {
-      throw new HttpException('Game not found', HttpStatus.BAD_REQUEST);
-    }
-    return game;
+  getGameById(id: number) {
+    return this.gameRepository.getGameById(id);
+  }
+
+  getFilteredGames(query: QueryDto) {
+    return this.gameRepository.getFilteredGames(query);
   }
 }
