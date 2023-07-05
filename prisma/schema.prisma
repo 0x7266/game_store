@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Game {
-  id                     Int    @id @unique
+  id                     Int     @id @unique
   title                  String
   thumbnail              String
   short_description      String
@@ -22,6 +22,29 @@ model Game {
   developer              String
   release_date           String
   freetogame_profile_url String
+  orders                 Order[]
 
   @@map(name: "games")
+}
+
+model Order {
+  id        Int      @id @default(autoincrement())
+  gameId    Int
+  userId    Int
+  createdAt DateTime @default(now())
+  game      Game     @relation(fields: [gameId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@map(name: "users")
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  username String  @unique
+  email    String  @unique
+  password String
+  balance  Float   @default(0)
+  orders   Order[]
+
+  @@map(name: "orders")
 }
