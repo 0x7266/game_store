@@ -1,3 +1,4 @@
+import helmet from 'helmet';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from '@/modules';
 import { VersioningType } from '@nestjs/common';
@@ -7,7 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
   app.enableVersioning({ type: VersioningType.URI, defaultVersion: '1' });
-
+  app.use(helmet());
   const config = new DocumentBuilder()
     .setTitle('Median')
     .setDescription('The Median API description')
