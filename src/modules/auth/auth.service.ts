@@ -4,7 +4,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { AuthEntity } from './entities';
+import { AuthEntity } from '@entities/auth';
 import { UsersService } from '@modules/users';
 import * as bcrypt from 'bcrypt';
 

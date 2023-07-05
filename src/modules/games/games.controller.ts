@@ -1,6 +1,6 @@
 import { Controller, Get, Param, ParseIntPipe, Query } from '@nestjs/common';
 import { GamesService } from '@modules/games/games.service';
-import { QueryDto } from './dtos/QueryDto';
+import { QueryDto } from '@common/dtos';
 
 @Controller('games')
 export class GamesController {

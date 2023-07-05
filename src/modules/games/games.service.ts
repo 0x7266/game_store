@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { GamesRepository } from './games.repository';
-import { QueryDto } from './dtos/QueryDto';
+import { QueryDto } from '@common/dtos';
 
 @Injectable()
 export class GamesService {

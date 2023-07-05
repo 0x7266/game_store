@@ -19,7 +19,12 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@/*": ["src/*"],
-      "@modules/*": ["src/modules/*"]
+      "@common/*": ["src/common/*"],
+      "@database/*": ["src/database/*"],
+      "@entities/*": ["src/entities/*"],
+      "@guards/*": ["src/guards/*"],
+      "@modules/*": ["src/modules/*"],
+      "@shared/*": ["src/shared/*"]
     }
   }
 }

@@ -1,6 +1,6 @@
 import { NotFoundException, Injectable } from '@nestjs/common';
 import { PrismaService } from '@/shared';
-import { QueryDto } from './dtos/QueryDto';
+import { QueryDto } from '@common/dtos';
 
 @Injectable()
 export class GamesRepository {

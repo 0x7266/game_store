@@ -16,10 +16,10 @@ import {
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { UserEntity } from './entities';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth';
-import { UpdateUserDto } from './dtos/update-user.dto';
-import { CreateUserDto } from './dtos';
+import { UserEntity } from '@/entities';
+import { JwtAuthGuard } from '@guards/jwt';
+import { UpdateUserDto } from '@common/dtos';
+import { CreateUserDto } from '@common/dtos';
 
 @Controller('users')
 @ApiTags('users')
