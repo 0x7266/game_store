@@ -13,6 +13,10 @@ export class UsersService {
     return this.usersRepository.getUser(email);
   }
 
+  getUserById(id: number) {
+    return this.usersRepository.getUserById(id);
+  }
+
   updateUser() {
     return this.usersRepository.updateUser();
   }

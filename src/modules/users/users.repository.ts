@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UsersRepository {
-  constructor(private prismaService: PrismaService) {}
+  constructor(private readonly prismaService: PrismaService) {}
 
   createUser() {}
 
@@ -11,6 +11,10 @@ export class UsersRepository {
     return await this.prismaService.user.findUnique({
       where: { email },
     });
+  }
+
+  async getUserById(id: number) {
+    return await this.prismaService.user.findUnique({ where: { id } });
   }
 
   updateUser() {}
