@@ -7,7 +7,13 @@ export class UsersRepository {
 
   createUser() {}
 
-  async getUser(email: string) {
+  async getUser(username: string) {
+    return await this.prismaService.user.findUnique({
+      where: { username },
+    });
+  }
+
+  async getUserByEmail(email: string) {
     return await this.prismaService.user.findUnique({
       where: { email },
     });

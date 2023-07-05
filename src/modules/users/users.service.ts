@@ -17,11 +17,11 @@ export class UsersService {
     return this.usersRepository.getUserById(id);
   }
 
-  updateUser() {
+  updateUser(id: number) {
     return this.usersRepository.updateUser();
   }
 
-  deleteUser() {
+  deleteUser(id: number) {
     return this.usersRepository.deleteUser();
   }
 }

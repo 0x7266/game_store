@@ -14,13 +14,13 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async login(email: string, password: string): Promise<AuthEntity> {
-    // Step 1: Fetch a user with the given email
-    const user = await this.userService.getUser(email);
+  async login(username: string, password: string): Promise<AuthEntity> {
+    // Step 1: Fetch a user with the given username
+    const user = await this.userService.getUser(username);
 
     // If no user is found, throw an error
     if (!user) {
-      throw new NotFoundException(`No user found for email: ${email}`);
+      throw new NotFoundException(`No user found`);
     }
 
     // Step 2: Check if the password is correct
@@ -36,6 +36,4 @@ export class AuthService {
       accessToken: this.jwtService.sign({ userId: user.id }),
     };
   }
-
-  signUp() {}
 }

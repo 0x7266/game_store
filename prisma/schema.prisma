@@ -32,6 +32,7 @@ model Order {
   gameId    Int
   userId    Int
   createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
   game      Game     @relation(fields: [gameId], references: [id])
   user      User     @relation(fields: [userId], references: [id])
 
@@ -39,12 +40,13 @@ model Order {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  username String  @unique
-  email    String  @unique
-  password String
-  balance  Float   @default(0)
-  orders   Order[]
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  orders    Order[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 
   @@map(name: "orders")
 }
