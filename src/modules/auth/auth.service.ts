@@ -6,6 +6,7 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { AuthEntity } from './entities';
 import { UsersService } from '@modules/users';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -24,7 +25,7 @@ export class AuthService {
     }
 
     // Step 2: Check if the password is correct
-    const isPasswordValid = user.password === password;
+    const isPasswordValid = bcrypt.compare(password, user.password);
 
     // If password does not match, throw an error
     if (!isPasswordValid) {
